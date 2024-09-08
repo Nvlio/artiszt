@@ -1,0 +1,239 @@
+.Layout_Page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Layout_Footer {
+    width: 95%;
+    height: 10vh;
+    background-color: black;
+    margin-left: 05%;
+    color: white;
+    display: flex;
+}
+
+.Layout_Footer .Texto {
+    width: 80%;
+}
+
+.Layout_Footer .Image {
+    padding-left: 25%;
+    padding-top: 0.5%;
+    width: 30%;
+}
+
+.NavMenuSide {
+    width: 5%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    border: 1px solid black;
+    background-color: rgb(227, 230, 233);
+    text-align: center;
+}
+
+
+.LogoBorder {
+    border: 1px solid black;
+    position: relative;
+    border-radius: 100%;
+    width: 65%;
+    height: 7%;
+    margin: 15% 0% 60% 18%;
+    cursor: pointer;
+}
+
+.ImgItem {
+    width: 40%;
+    height: 8%;
+    margin: 0% 0% 0% 30%;
+    cursor: pointer;
+}
+
+.PostBorder {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20%;
+    height: 50px;
+    padding-top: 17%;
+    background-color: rgb(0, 55, 255);
+    margin: 0% 15%;
+}
+
+.Search_bar {
+    border: 1px solid black;
+    display: flex;
+    background-color: rgb(204, 204, 204);
+    width: 95%;
+    height: 6vh;
+    margin-left: 5%;
+}
+
+.Search_input {
+    border-radius: 10px 0px 0px 10px;
+    border: 1px solid black;
+    margin-top: 0.4%;
+    height: 70%;
+    margin-left: 2%;
+    padding-left: 1%;
+    width: 50%;
+}
+
+.Search_button {
+    border: 1px solid black;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(164, 164, 164);
+    margin-top: 0.4%;
+    padding-left: 1.5%;
+    padding-top: 0.1%;
+    cursor: pointer;
+    height: 70%;
+    width: 5%;
+}
+
+.Search_button:hover {
+    background-color: rgb(82, 82, 82);
+}
+
+.Header {
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: 95%;
+    height: 12vh;
+    font-size: 300%;
+    align-self: center;
+    justify-content: center;
+    font-family: fantasy;
+    margin-left: 5%;
+}
+
+.BlockSignIn {
+    border: 1px solid black;
+    border-radius: 3%;
+    width: 30%;
+    height: 70vh;
+    margin-top: 5%;
+    background-color: rgb(199, 199, 199);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.TextoEspecial {
+    margin-top: 10%;
+}
+
+.Titulo {
+    font-size: 30px;
+}
+
+.TextoEspecial>.Titulo {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Tela{
+    z-index: 2;
+    position:fixed;
+    background-color:rgba(0, 0, 0, 0.8);
+    width:100%;
+    height:100vh;
+    margin-top: -6%;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    padding:1%;
+    align-items: end;
+}
+.Tela > #formTela{
+    align-self: center;
+}
+
+.TelaLogin{
+    background-color: white;
+    color: black;
+    border-radius: 5%;
+    width: 300%;
+    text-align: center;
+    margin-left: -100%;
+    margin-top: 30%;
+    height: 70vh;
+}
+
+.TelaRegister{
+    margin-top: 02%;
+    margin-left: 05%;
+    width: 100%;
+    height: 85vh;
+
+}
+
+.Title{
+    font-size: 200%;
+    font-family: system-ui;
+    margin-bottom: -5%;
+}
+
+.TelaLogin > h3{
+    font-size: 17px;
+}
+
+.TelaLogin  button{
+    margin:3%
+}
+
+
+
+/*aqui são classes para alguns casinhos*/
+.LoginButton {
+    margin-top: 10%;
+    width: 200%;
+    height: 80%;
+    padding: 10% 45%;
+    border-radius: 10%;
+}
+
+.ButtonBlue {
+    color: white;
+    background-color: rgb(0, 115, 255);
+}
+
+.Button {
+    border: 1px solid black;
+    border-radius: 5%;
+    width: 150%;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding-top: 3%;
+    font-size: 25px;
+    height: 50px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.ButtonBlue:hover {
+    background-color: rgb(39, 39, 131);
+    border: 1px solid white;
+
+}
+
+
+hr{
+    border-color: black;
+    width: 50%;
+    margin-top: 10%;
+}
+span{
+    margin: 0% 5%;
+}
+
+input{
+    border:1px solid black;
+    border-radius: 2%;
+    width: 70%;
+    height: 40px;
+    margin: 1%;
+    padding: 0% 02%;
+}
