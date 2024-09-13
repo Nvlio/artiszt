@@ -10,7 +10,6 @@ export default function SignPage({ children }: { children: React.ReactNode[] }) 
     const [open, setOpen] = useState("aberto")
     let Register;
     let Login;
-    console.log(children)
     children?.map((child: any) => {
         if (child?.key === "Login") { Login = child }
         else {

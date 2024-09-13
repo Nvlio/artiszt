@@ -11,20 +11,21 @@ datasource db {
 }
 
 model User {
-  id          String     @id @default(cuid())
-  email       String //Criptografado?
-  nome        String
-  dataEntrada DateTime
+  id            String            @id @default(cuid())
+  email         String            @unique //Criptografado? 
+  name          String
+  dataEntrada   DateTime?
+  image         String?
   emailVerified DateTime?
-  verificado  Bytes
-  senha       String? //Criptografado
-  funcao      String?
-  frase       String?
-  estrutura ProfileStructure?
-  accounts    Account[]
-  links       Link[]
-  paginas     Pagina[]
-  posts Post[]
+  verificado    Bytes? //ver se tem como colocar default value
+  senha         String? //Criptografado
+  funcao        String?
+  frase         String?
+  estrutura     ProfileStructure?
+  accounts      Account[]
+  links         Link[]
+  paginas       Pagina[]
+  posts         Post[]
 }
 
 model Account {
@@ -57,108 +58,106 @@ model Empresa {
   frase       String?
   links       Link[]
   paginas     Pagina[]
-  posts Post[]
+  posts       Post[]
 }
 
 model Pagina {
-  id        String  @id @default(cuid()) 
+  id          String  @id @default(cuid())
   senhaAcesso String //Criptografado
-  nome      String
-  funcao    String
-  links     Link[]
-  userId    String?
-  empresaId String?
-  posts Post[]
+  nome        String
+  funcao      String
+  links       Link[]
+  userId      String?
+  empresaId   String?
+  posts       Post[]
 
   user    User?    @relation(fields: [userId], references: [id])
   empresa Empresa? @relation(fields: [empresaId], references: [id])
 }
 
 model Link {
-  id        String @id @default(cuid())
+  id        String  @id @default(cuid())
   nome      String
   path      String
   userId    String?
   empresaId String?
   paginaId  String?
 
-  
   user    User?    @relation(fields: [userId], references: [id])
   empresa Empresa? @relation(fields: [empresaId], references: [id])
-  pagina Pagina? @relation(fields: [paginaId],references: [id])
+  pagina  Pagina?  @relation(fields: [paginaId], references: [id])
 }
 
-model Post{
-  id String @id @default(cuid())
-  titulo String
-  text String
-  subTexto String
+model Post {
+  id             String  @id @default(cuid())
+  titulo         String
+  text           String
+  subTexto       String
   dataPublicacao String
-  userId String?
-  empresaId String?
-  paginaId String? 
-  fotos Foto[]
-  videos Video[]
-  audios Audio[]
-  generoId String
+  userId         String?
+  empresaId      String?
+  paginaId       String?
+  fotos          Foto[]
+  videos         Video[]
+  audios         Audio[]
+  generoId       String
 
   user    User?    @relation(fields: [userId], references: [id])
   empresa Empresa? @relation(fields: [empresaId], references: [id])
-  pagina Pagina? @relation(fields: [paginaId],references: [id])
-
+  pagina  Pagina?  @relation(fields: [paginaId], references: [id])
 }
 
-model Foto{
-  id String @id @default(cuid())
+model Foto {
+  id          String @id @default(cuid())
   NomeArquivo String
-  idPost String
+  idPost      String
 
-  post Post @relation(fields: [idPost],references: [id])
+  post Post @relation(fields: [idPost], references: [id])
 }
 
-model Video{
-  id String @id @default(cuid())
+model Video {
+  id          String @id @default(cuid())
   NomeArquivo String
-  idPost String
+  idPost      String
 
-  post Post @relation(fields: [idPost],references: [id])
+  post Post @relation(fields: [idPost], references: [id])
 }
 
-model Audio{
-  id String @id @default(cuid())
+model Audio {
+  id          String @id @default(cuid())
   NomeArquivo String
-  idPost String
+  idPost      String
 
-  post Post @relation(fields: [idPost],references: [id])
+  post Post @relation(fields: [idPost], references: [id])
 }
 
-model Conversa{
-  id String @id @default(cuid())
-  donosUsuario String?
+model Conversa {
+  id              String     @id @default(cuid())
+  donosUsuario    String?
   receptorUsuario String?
-  donoEmpresa String?
+  donoEmpresa     String?
   receptorEmpresa String?
-  mensagens Mensagem[]
+  mensagens       Mensagem[]
 }
 
-model Mensagem{
-  id String @id @default(cuid())
-  mensagem String
-  dataEnvio DateTime
-  idMens String
+model Mensagem {
+  id          String   @id @default(cuid())
+  mensagem    String
+  dataEnvio   DateTime
+  idMens      String
   donoUsuario String? //esses 2 vão ter queser passados o valor dos usuarios manualmente ao criar eles.
   donoEmpresa String? //esses 2 vão ter queser passados o valor dos usuarios manualmente ao criar eles.
-  
-  conversa Conversa @relation(fields: [idMens],references: [id])
+
+  conversa Conversa @relation(fields: [idMens], references: [id])
 }
 
-model Genero{
-  id Int @id @default(autoincrement())
+model Genero {
+  id   Int    @id @default(autoincrement())
   nome String
 }
 
-model ProfileStructure{
-  id String @id @default(cuid())
+model ProfileStructure {
+  id     String @id @default(cuid())
   idUser String @unique
-  user User @relation(fields: [idUser],references: [id])
+  user   User   @relation(fields: [idUser], references: [id])
 }
