@@ -2,8 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Sair from "@/funcoes/deslogar";
+import { redirect, useRouter } from "next/navigation";
+import AutoUpdate from "@/funcoes/updateauto";
 
-export default function NavBarMenu() {
+export default function NavBarMenu(session: any) {
+    const url = useRouter()
+    // console.log(session.session)
+
+    const update = async () => {
+        await AutoUpdate()
+    }
+
+    //chama função atualizar dados do usuario caso existe uma sessão porem ela esteja sem informação
+    if (session.session && session.session.user.info.userID === null) {
+        update()
+    }
+
+
+    //função para sair da sessão
+    const signOut = async () => {
+        await Sair()
+        const path = window.location.pathname
+        if (path === "/") {
+            window.location.reload()
+        } else {
+            url.push("/")
+        }
+
+    }
     return (
         <>
             <div className="NavMenuSide" >
@@ -15,14 +42,16 @@ export default function NavBarMenu() {
                 < br />
                 <Link href={"/"}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/casa.png"  width={100} height={100} alt="icon_home" />
+                        <Image src="/Public_Itens/Imagens/Default_Site_Img/casa.png" width={100} height={100} alt="icon_home" />
                     </div>
                 </Link>
-                < Link href={"/Search"} >
-                    <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/search_141944.png" width={100} height={100} alt="Icon_search" />
-                    </div>
-                </Link>
+                {session.session ?
+                    < Link href={`/Profile/${session.session.user.info.userID}`} >
+                        <div className="ImgItem" >
+                            <Image src="/Public_Itens/Imagens/Default_Site_Img/profile.png" width={100} height={100} alt="Icon_search" />
+                        </div>
+                    </Link>
+                    : null}
                 < Link href={"/Msg"} >
                     <div className="ImgItem" >
                         <Image src="/Public_Itens/Imagens/Default_Site_Img/dialogue_15370872.png" width={100} height={100} alt="Icon_Message" />
@@ -55,9 +84,11 @@ export default function NavBarMenu() {
                     </Link>
                 </div>
                 < br /> <br />
-                < div className="ImgItem" onClick={() => { console.log("excluido") }}>
-                    <Image src="/Public_Itens/Imagens/Default_Site_Img/log-out_141942.png" width={100} height={100}  alt="Icon_SignOut" />
-                </div>
+                {session.session ?
+                    < div className="ImgItem" onClick={() => { signOut() }}>
+                        <Image src="/Public_Itens/Imagens/Default_Site_Img/log-out_141942.png" width={100} height={100} alt="Icon_SignOut" />
+                    </div> :
+                    null}
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github"
 import SpotifyProvider from "next-auth/providers/spotify";
@@ -11,6 +11,17 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient()
+
+declare module "next-auth" {
+    interface Session {
+        user: User & {
+            ThirdP?: any
+            info?: any
+        }
+    }
+}
+
+
 
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth({
@@ -34,7 +45,9 @@ export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth({
                             return {
                                 id: user.id,
                                 email: user.email,
+                                userID: user.userID,
                                 name: user.name,
+                                image:user.imageP,
                                 data_entrada: user.dataEntrada,
                                 funcao: user.funcao,
                                 verificado: user.verificado,
@@ -71,5 +84,20 @@ export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth({
             clientSecret: process.env.AUTH_SPOTIFY_SECRET,
             allowDangerousEmailAccountLinking: true
         })
-    ]
+    ],
+    trustHost: true,
+    secret: process.env.AUTH_SECRET,
+    callbacks:{
+        jwt({token,profile,user}){
+            return {thirdP:profile,info:user,...token}
+        },
+        session({session,token}){
+            session.user.ThirdP = token.thirdP
+            session.user.info = token.info
+            return session
+        }
+    }
 })
+
+
+

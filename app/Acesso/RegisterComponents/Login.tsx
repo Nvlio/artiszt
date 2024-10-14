@@ -1,11 +1,27 @@
+"use client"
+
 import Image from "next/image";
-import Logar from "../function/signIn";
-import OauthSignIn from "../function/signOath";
+import Logar from "../../../funcoes/signIn";
+import OauthSignIn from "../../../funcoes/signOath";
+import { useState } from "react";
 
 
 
 
-export default function LoginPage({ tipo }: { tipo: String }) {
+export default function LoginPage() {
+    const [dados,setDados] = useState({
+        email:"",
+        senha:""
+    })
+    const [erro,setErro] = useState("")
+
+    const Acessar = async (e:any)=>{
+        e.preventDefault()
+        const res:string|undefined = await Logar(dados)
+        if(res){
+            setErro(res)
+        }
+    }
 
     return (
         <div className="TelaLogin" key={"Login"}>
@@ -13,32 +29,29 @@ export default function LoginPage({ tipo }: { tipo: String }) {
             <hr style={{ width: "100%" }} />
             <h3>Logue via:</h3>
             <div className="Accounts">
-                <form action={OauthSignIn}>
-                    <button name="1" value={"google"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/google.png"} width={30} height={30} alt="gmail" /></button>
-                </form>
-                <form action={OauthSignIn}>
-                    <button name="1" value={"github"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/github.png"} width={30} height={30} alt="github" /></button>
-                </form>
-                <form action={OauthSignIn}>
-                    <button name="1" value={"linkedin"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/linkedin.png"} width={30} height={30} alt="linkedin" /></button>
-                </form>
-                <form action={OauthSignIn}>
-                    <button name="1" value={"facebook"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/facebook.png"} width={30} height={30} alt="facebook" /></button>
-                </form>
-                <form action={OauthSignIn}>
-                    <button name="1" value={"spotify"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/spotify.png"} width={30} height={30} alt="spotify" /></button>
-                </form>
+                <button onClick={()=>{OauthSignIn("google")}} name="1" value={"google"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/google.png"} width={30} height={30} alt="gmail" /></button>
+
+                <button onClick={()=>{OauthSignIn("github")}} name="1" value={"github"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/github.png"} width={30} height={30} alt="github" /></button>
+
+                <button onClick={()=>{OauthSignIn("linkedin")}} name="1" value={"linkedin"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/linkedin.png"} width={30} height={30} alt="linkedin" /></button>
+
+                <button onClick={()=>{OauthSignIn("facebook")}} name="1" value={"facebook"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/facebook.png"} width={30} height={30} alt="facebook" /></button>
+
+                <button onClick={()=>{OauthSignIn("spotify")}} name="1" value={"spotify"}><Image src={"/Public_Itens/Imagens/Default_Site_Img/spotify.png"} width={30} height={30} alt="spotify" /></button>
+
             </div>
             <br />
             <h3>Ou</h3>
             <br /><br />
-            <form action={Logar}>
-                <input type="text" name="Email" id="Email" placeholder="Email"></input>
+            <form onSubmit={(e)=>{Acessar(e)}}>
+                <input onChange={(e)=>{setDados((prevState)=>({...prevState,email:e.target.value}))}} type="text" name="Email" id="Email" placeholder="Email"></input>
                 <br />
-                <input type="password" name="Senha" id="Senha" placeholder="Senha"></input>
+                <input onChange={(e)=>{setDados((prevState)=>({...prevState,senha:e.target.value}))}} type="password" name="Senha" id="Senha" placeholder="Senha"></input>
                 <br />
                 <button>Enviar</button>
             </form>
+            <div className="Error" style={{display:erro!==""?"block":"none"}}>{erro}</div>
         </div>
     )
+
 }

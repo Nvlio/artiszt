@@ -3,19 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import LoginPage from "./Login";
+import RegisterPage from "./Register";
 
-export default function SignPage({ children }: { children: React.ReactNode[] }) {
+export default function SignPage() {
+    
     //define se vai ser login ou cadastro
     const [fazer, setFazer] = useState("Nenhum")
     const [open, setOpen] = useState("aberto")
-    let Register;
-    let Login;
-    children?.map((child: any) => {
-        if (child?.key === "Login") { Login = child }
-        else {
-            Register = child
-        }
-    })
+    
+    
 
     const centralizar = { marginLeft: "-25%" }
     return (
@@ -32,12 +28,12 @@ export default function SignPage({ children }: { children: React.ReactNode[] }) 
 
                 {fazer === "Logar" ?
                     <div id="formTela">
-                        {Login}
+                        <LoginPage/>
                     </div>
 
                     :
                     <div id="formTela">
-                        {Register}
+                        <RegisterPage/>
                     </div>
                 }
             </div>

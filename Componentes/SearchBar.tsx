@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import Sair from "@/funcoes/deslogar";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,11 +16,7 @@ export default async function Search_bar() {
                     <div style={{ width: "30%" }} />
                 </form>
                 {sessao != null ?
-                    <form action={Sair}>
-                        <button className="ButtonBlue LoginButton">
-                            Sair
-                        </button>
-                    </form>
+                    null
                     :
 
                     <Link href={"/Acesso"}>

@@ -50,7 +50,7 @@
     background-color:rgba(0, 0, 0, 0.8);
     width:100%;
     height:100vh;
-    margin-top: -6%;
+    margin-top: 0%;
     color: white;
     display:flex;
     flex-direction: column;
@@ -69,8 +69,33 @@
     text-align: center;
     margin-left: -100%;
     margin-top: 30%;
-    height: 70vh;
+    height: 75vh;
 }
+
+.ProfileBIO{
+    display: flex;
+    width: 100%;
+    padding-top: 0.5%;
+    background-color: rgb(216, 218, 218);
+}
+
+.ProfileBIO > #extraBio{
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8%;
+    font-size: 120%; 
+    align-items: center;
+
+}
+
+.ProfileBIO > #MainBio{
+    width: 65%;
+    padding-left: 3%;
+}
+
+
+
 
 .TelaRegister{
     margin-top: 02%;
@@ -81,7 +106,7 @@
 }
 
 .Title{
-    font-size: 200%;
+    font-size: 200% !important;
     font-family: system-ui;
     margin-bottom: -5%;
 }
@@ -93,6 +118,17 @@
 .TelaLogin  button{
     margin:3%
 }
+.TelaMain{
+    border:1px solid black;
+    background-color: rgb(209, 209, 209);
+    width:40%;
+    height:50vh;
+    margin:7% 10%;
+    text-align:center;
+    padding:3%;
+    border-radius:10px
+}
+
 
 .Accounts{
     display: flex;
@@ -100,6 +136,15 @@
     margin-top: 5%;
     gap:3%;
     height: 10vh;
+}
+
+.Error{
+    border-radius: 2.5px;
+    background-color: red;
+    color: white;
+    width: 70%;
+    margin: 0% 0% 2% 15%;
+    height: 4vh;
 }
 
 .Accounts form:hover{
@@ -208,6 +253,8 @@
 }
 
 
+
+
 /*aqui são classes para alguns casinhos*/
 .LoginButton {
     margin-top: 10%;
@@ -228,6 +275,7 @@
     width: 150%;
     background-color: rgb(255, 255, 255);
     text-align: center;
+    padding-bottom: 10%;
     padding-top: 3%;
     font-size: 25px;
     height: 50px;
@@ -257,4 +305,27 @@ input{
     height: 40px;
     margin: 1%;
     padding: 0% 02%;
+}
+
+
+/*IDs*/
+#flex{
+    display: flex;
+    gap:20px    
+}
+
+#flexBottom{
+    display: flex;
+    gap:20px;
+    margin-bottom: 100%;
+}
+
+#botao{
+    text-align: center;
+    padding-top: 4%;
+    width: 80%;
+    margin-left: 15%;
+    border-radius: 7px;
+    cursor: pointer;
+    height: 40px;
 }

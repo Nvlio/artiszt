@@ -12,10 +12,12 @@ datasource db {
 
 model User {
   id            String            @id @default(cuid())
+  userID        String?           @unique
   email         String            @unique //Criptografado? 
   name          String
   dataEntrada   DateTime?
-  image         String?
+  imageProfile  String?
+  imageBanner   String?
   emailVerified DateTime?
   verificado    Bytes? //ver se tem como colocar default value
   senha         String? //Criptografado
