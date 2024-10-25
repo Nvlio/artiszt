@@ -1,7 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import EditarProfile from "../SetProfileComp"
+import GETIMG from "@/funcoes/getfoto"
+import toBlob from "@/funcoes/transformBlob"
 
 export default function CompPAGE({ perfilID, dataP }: { perfilID: string, dataP: any }) {
     const [estado, setEstado] = useState("Normal")
@@ -12,15 +14,31 @@ export default function CompPAGE({ perfilID, dataP }: { perfilID: string, dataP:
         imgProfile: dataP.imageProfile,
         imgBanner: dataP.imageBanner
     })
-    console.log(dataP)
+    const [links,setLinks] = useState({profile:{},banner:{}}) 
+    // console.log(dataP
+    const GETimg = async()=>{
+        const profile = await GETIMG(data.imgProfile,"Profiles")
+        const banner = await GETIMG(data.imgBanner,"Banners")
+        const profilelink = URL.createObjectURL(await toBlob(profile,data.imgProfile.split(".")[1]))
+        const bannerlink = URL.createObjectURL(await toBlob(banner,data.imgBanner.split(".")[1]))
+        setLinks({profile:profilelink,banner:bannerlink})
+    }   
+
+    useEffect(()=>{
+        GETimg()
+    },[])
 
     //vai mostrar o perfil do usuario (caso seja o perfil do proprio usuario vai permitir ele mudar, caso contrario so ler])
     return (
            
             <div style={{ width: "108.8%", marginLeft: "5.7%", marginTop: "-7.3%" }}>
-                 {estado!=="Normal"?<EditarProfile props={{Dados:setData,Estado:setEstado}}/>:null}
-                <div className="ProfileBanner" style={{ backgroundColor: "blue", width: "100%", height: "55vh", marginTop: "-7.25%" }} />
-                <div className="ProfilePicture MainPicProfile" style={{ backgroundColor: "green", borderRadius: "100%", width: "15%", height: "30vh", marginTop: "-7%", marginLeft: "1%", position: "absolute", border: "5px solid", borderColor: "black" }} />
+                {estado!=="Normal"?<EditarProfile props={{Dados:setData,Estado:setEstado,UserData:data,id:perfilID}}/>:null}
+                <div className="BannerPicture">
+                    <img src={links.banner} className="BannerPic"/>
+                </div>
+                <div className="ProfilePicture">
+                <img src={links.profile} className="ProfilePic"/>
+                </div>
                 <div className="ProfileBIO" style={{ width: "100%", height: "45vh", border: "5px solid black" }} >
                     <div className="ProfileBIO">
                         <div id="extraBio">

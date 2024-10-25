@@ -16,8 +16,6 @@ export default async function AutoUpdate() {
         UserPID = await db.user.findUnique({ where: { userID: nome } })
 
         if (UserPID == null) {
-            console.log("final")
-            console.log(UserPID)
             unique = true
         }
     }

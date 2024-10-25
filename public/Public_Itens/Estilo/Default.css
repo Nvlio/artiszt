@@ -44,24 +44,25 @@
     cursor: pointer;
 }
 
-.Tela{
+.Tela {
     z-index: 2;
-    position:fixed;
-    background-color:rgba(0, 0, 0, 0.8);
-    width:100%;
-    height:100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100vh;
     margin-top: 0%;
     color: white;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    padding:1%;
+    padding: 1%;
     align-items: end;
 }
-.Tela > #formTela{
+
+.Tela>#formTela {
     align-self: center;
 }
 
-.TelaLogin{
+.TelaLogin {
     background-color: white;
     color: black;
     border-radius: 5%;
@@ -72,32 +73,66 @@
     height: 75vh;
 }
 
-.ProfileBIO{
+.ProfileBIO {
     display: flex;
+    position: relative;
     width: 100%;
     padding-top: 0.5%;
     background-color: rgb(216, 218, 218);
 }
 
-.ProfileBIO > #extraBio{
+.ProfileBIO>#extraBio {
     width: 17%;
     display: flex;
     flex-direction: column;
     margin-top: 8%;
-    font-size: 120%; 
+    font-size: 120%;
     align-items: center;
 
 }
 
-.ProfileBIO > #MainBio{
+.ProfileBIO>#MainBio {
     width: 65%;
     padding-left: 3%;
+}
+
+.ProfilePic {
+    width: 100%;
+    height: 100%;
+    border: 5px solid black;
+    border-radius: 100%;
+    object-fit: cover;
+
+
+}
+
+.BannerPic{
+    object-fit: none;
+    width: 100%;
+    height: 80vh;
+}
+
+.ProfilePicture {
+    border-radius: 100%;
+    width: 15%;
+    height: 30vh;
+    margin-top: -7%;
+    margin-left: 1%;
+    position: absolute;
+    z-index: 1;
+}
+
+.BannerPicture{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%; 
+    height: 55vh; 
+    margin-top: -7.25%
 }
 
 
 
 
-.TelaRegister{
+.TelaRegister {
     margin-top: 02%;
     margin-left: 05%;
     width: 100%;
@@ -105,40 +140,41 @@
 
 }
 
-.Title{
+.Title {
     font-size: 200% !important;
     font-family: system-ui;
     margin-bottom: -5%;
 }
 
-.TelaLogin > h3{
+.TelaLogin>h3 {
     font-size: 17px;
 }
 
-.TelaLogin  button{
-    margin:3%
+.TelaLogin button {
+    margin: 3%
 }
-.TelaMain{
-    border:1px solid black;
+
+.TelaMain {
+    border: 1px solid black;
     background-color: rgb(209, 209, 209);
-    width:40%;
-    height:50vh;
-    margin:7% 10%;
-    text-align:center;
-    padding:3%;
-    border-radius:10px
+    width: 40%;
+    height: 50vh;
+    margin: 7% 10%;
+    text-align: center;
+    padding: 3%;
+    border-radius: 10px
 }
 
 
-.Accounts{
+.Accounts {
     display: flex;
     justify-content: center;
     margin-top: 5%;
-    gap:3%;
+    gap: 3%;
     height: 10vh;
 }
 
-.Error{
+.Error {
     border-radius: 2.5px;
     background-color: red;
     color: white;
@@ -147,7 +183,7 @@
     height: 4vh;
 }
 
-.Accounts form:hover{
+.Accounts form:hover {
     border: 1px solid black;
     border-radius: 10%;
     padding: 2%;
@@ -252,6 +288,19 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.ImageDrop {
+    border: 1px dashed black;
+    margin: 3% 35%;
+    height: 15vh;
+    padding-top: 3%;
+}
+
+.MiniTela {
+    border-bottom: 1px solid black;
+    height: 65vh;
+    overflow-y: auto;
+}
+
 
 
 
@@ -269,9 +318,24 @@
     background-color: rgb(0, 115, 255);
 }
 
+.ReturnButton {
+    border: 1px solid black;
+    background-color: rgb(219, 219, 219);
+}
+
+.greenBG {
+    background-color: green !important;
+    color: white;
+}
+
+.greenBG:hover {
+    background-color: rgb(4, 76, 4) !important;
+    color: white;
+}
+
 .Button {
     border: 1px solid black;
-    border-radius: 5%;
+    border-radius: 10px;
     width: 150%;
     background-color: rgb(255, 255, 255);
     text-align: center;
@@ -279,7 +343,7 @@
     padding-top: 3%;
     font-size: 25px;
     height: 50px;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 
@@ -290,16 +354,18 @@
 }
 
 
-hr{
+hr {
     border-color: black;
     width: 50%;
     margin-top: 10%;
 }
-span{
+
+span {
     margin: 0% 5%;
 }
-input{
-    border:1px solid black;
+
+input {
+    border: 1px solid black;
     border-radius: 2%;
     width: 70%;
     height: 40px;
@@ -309,18 +375,18 @@ input{
 
 
 /*IDs*/
-#flex{
+#flex {
     display: flex;
-    gap:20px    
+    gap: 20px
 }
 
-#flexBottom{
+#flexBottom {
     display: flex;
-    gap:20px;
+    gap: 20px;
     margin-bottom: 100%;
 }
 
-#botao{
+#botao {
     text-align: center;
     padding-top: 4%;
     width: 80%;
