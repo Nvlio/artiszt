@@ -5,8 +5,10 @@ import Link from "next/link";
 import Sair from "@/funcoes/deslogar";
 import { redirect, useRouter } from "next/navigation";
 import AutoUpdate from "@/funcoes/updateauto";
+import { useState } from "react";
 
 export default function NavBarMenu(session: any) {
+    const [estado,setEstado] = useState("Home")
     const url = useRouter()
     // console.log(session.session)
 
@@ -34,42 +36,43 @@ export default function NavBarMenu(session: any) {
     return (
         <>
             <div className="NavMenuSide" >
-                <Link href={"/"}>
+                {/* logo site */}
+                <Link href={"/"} onClick={()=>{setEstado("Home")}}>
                     <div className="LogoBorder" >
                         <Image src="/Public_Itens/Imagens/Default_Site_Img/Logo_artizt-removebg-preview.png" width={100} height={100} alt="logo artiszt" />
                     </div>
                 </Link>
                 < br />
-                <Link href={"/"}>
+                <Link href={"/"}onClick={()=>{setEstado("Home")}}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/casa.png" width={100} height={100} alt="icon_home" />
+                        <Image src={estado==="Home"?"/Public_Itens/Imagens/Default_Site_Img/casaB.png":"/Public_Itens/Imagens/Default_Site_Img/casa.png"} width={100} height={100} alt="icon_home" />
                     </div>
                 </Link>
                 {session.session ?
-                    < Link href={`/Profile/${session.session.user.info.userID}`} >
+                    < Link href={`/Profile/${session.session.user.info.userID}`} onClick={()=>{setEstado("Profile")}}>
                         <div className="ImgItem" >
-                            <Image src="/Public_Itens/Imagens/Default_Site_Img/profile.png" width={100} height={100} alt="Icon_search" />
+                            <Image src={estado==="Profile"?"/Public_Itens/Imagens/Default_Site_Img/profileB.png":"/Public_Itens/Imagens/Default_Site_Img/profile.png"} width={100} height={100} alt="Icon_search" />
                         </div>
                     </Link>
                     : null}
-                < Link href={"/Msg"} >
+                < Link href={"/Msg"} onClick={()=>{setEstado("Msg")}}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/dialogue_15370872.png" width={100} height={100} alt="Icon_Message" />
+                        <Image src={estado==="Msg"?"/Public_Itens/Imagens/Default_Site_Img/dialogue_15370872B.png":"/Public_Itens/Imagens/Default_Site_Img/dialogue_15370872.png"} width={100} height={100} alt="Icon_Message" />
                     </div>
                 </Link>
-                < Link href={"/MyPosts"} >
+                < Link href={"/MyPosts"} onClick={()=>{setEstado("MyPosts")}}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/imagem.png" width={100} height={100} alt="Icon_YourPosts" />
+                        <Image src={estado==="MyPosts"?"/Public_Itens/Imagens/Default_Site_Img/imagemB.png":"/Public_Itens/Imagens/Default_Site_Img/imagem.png"} width={100} height={100} alt="Icon_YourPosts" />
                     </div>
                 </Link>
-                < Link href={"/MyLikes"} >
+                < Link href={"/MyLikes"} onClick={()=>{setEstado("MyLikes")}}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/heart.png" width={100} height={100} alt="Icon_Likes" />
+                        <Image src={estado==="MyLikes"?"/Public_Itens/Imagens/Default_Site_Img/heartB.png":"/Public_Itens/Imagens/Default_Site_Img/heart.png"} width={100} height={100} alt="Icon_Likes" />
                     </div>
                 </Link>
-                < Link href={"/SiteConfig"} >
+                < Link href={"/SiteConfig"} onClick={()=>{setEstado("Configs")}}>
                     <div className="ImgItem" >
-                        <Image src="/Public_Itens/Imagens/Default_Site_Img/definicoes.png" width={100} height={100} alt="Icon_Configs" />
+                        <Image src={estado==="Configs"?"/Public_Itens/Imagens/Default_Site_Img/definicoesB.png":"/Public_Itens/Imagens/Default_Site_Img/definicoes.png"} width={100} height={100} alt="Icon_Configs" />
                     </div>
                 </Link>
 
