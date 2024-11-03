@@ -28,6 +28,8 @@ model User {
   links         Link[]
   paginas       Pagina[]
   posts         Post[]
+  Seguidores    Seguidores[]
+  Seguindo      Seguidores[]      @relation("seguidor")
 }
 
 model Account {
@@ -162,4 +164,15 @@ model ProfileStructure {
   id     String @id @default(cuid())
   idUser String @unique
   user   User   @relation(fields: [idUser], references: [id])
+}
+
+model Seguidores {
+  id         String  @id @default(cuid())
+  seguidorID String
+  userId     String?
+
+  seguidor User  @relation("seguidor", fields: [seguidorID], references: [id])
+  User     User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
