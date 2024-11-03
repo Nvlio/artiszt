@@ -208,6 +208,7 @@
 
 .Search_bar {
     border: 1px solid black;
+    z-index: 1;
     display: flex;
     background-color: rgb(204, 204, 204);
     width: 95%;
@@ -371,6 +372,10 @@ input {
     height: 40px;
     margin: 1%;
     padding: 0% 02%;
+}
+
+a{
+    cursor: pointer;
 }
 
 
